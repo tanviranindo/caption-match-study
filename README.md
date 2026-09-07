@@ -41,6 +41,11 @@ its window can be identified afterwards rather than trusted blindly.
 **Survives a closed tab.** Progress is kept on the device; reopening the link
 carries on where the rater stopped.
 
+**Fits one screen, never scrolls.** One description, one clip and one decision
+per screen, from a 320 px phone to a desktop. Thirty judgements should cost
+thirty taps, not thirty scrolls — rating a clip advances to the next one on its
+own, and number keys 1–5 work for anyone on a keyboard.
+
 ---
 
 ## Requirements

@@ -1,6 +1,7 @@
-/* A listening study is read in one sitting on a phone, usually at night, so the
-   page commits to a single quiet light theme rather than following the system.
-   One saturated colour exists and it means "you chose this". */
+/* A rating study is thirty small judgements made on a phone, often one-handed.
+   The page therefore occupies exactly one viewport and never scrolls: every
+   screen holds one description, one clip and one decision. Scrolling between
+   judgements is friction paid thirty times. */
 :root {
   color-scheme: light;
   --ground: #E9EDEC;
@@ -15,99 +16,128 @@
   --flag: #A8471F;
   --serif: Newsreader, Georgia, "Times New Roman", serif;
   --sans: "Inter Tight", system-ui, -apple-system, sans-serif;
-  --wrap: 42rem;
+  --pad: clamp(.9rem, 3.5vw, 1.5rem);
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; }
+html, body { margin: 0; height: 100%; }
 body {
   background: var(--ground); color: var(--ink);
-  font-family: var(--sans); font-size: 16px; line-height: 1.5;
+  font-family: var(--sans); font-size: 16px; line-height: 1.45;
   -webkit-text-size-adjust: 100%;
+  overflow: hidden;               /* the app owns the viewport */
+  overscroll-behavior: none;
 }
-main:focus { outline: none; }
-.loading { max-width: var(--wrap); margin: 0 auto; padding: 3rem 1.15rem; color: var(--ink-soft); }
 
-/* ---------- chrome ---------- */
-.bar { position: sticky; top: 0; z-index: 20; background: var(--ground); border-bottom: 1px solid var(--rule); }
-.bar-in { max-width: var(--wrap); margin: 0 auto; padding: .7rem 1.15rem .55rem;
-  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
-.bar-name { font-weight: 600; font-size: .95rem; letter-spacing: -.01em; }
-.bar-step { font-size: .85rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
-.track { height: 2px; background: var(--rule); }
-.track > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .3s ease; }
-main { max-width: var(--wrap); margin: 0 auto; padding: 1.5rem 1.15rem 7rem; }
+/* ---------- frame ---------- */
+.app {
+  height: 100dvh; max-width: 44rem; margin: 0 auto;
+  display: flex; flex-direction: column;
+  padding: 0 var(--pad) calc(var(--pad) + env(safe-area-inset-bottom));
+}
+.top { flex: 0 0 auto; padding: .7rem 0 .5rem; }
+.top-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.top-name { font-weight: 600; font-size: .9rem; letter-spacing: -.01em; }
+.top-step { font-size: .82rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.track { height: 2px; background: var(--rule); margin-top: .5rem; }
+.track > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .35s ease; }
 
-/* ---------- type ---------- */
-h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.7rem, 5vw, 2.3rem);
-  line-height: 1.2; margin: .4rem 0 .8rem; letter-spacing: -.01em; }
-p { margin: 0 0 1rem; max-width: 34rem; }
-.lede { color: var(--ink-soft); }
-.quiet { color: var(--ink-soft); font-size: .9rem; }
+.body { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+.foot { flex: 0 0 auto; padding-top: .6rem; }
 
-/* The caption is the hero: it is the thing every judgement is made against. */
-.caption-wrap { background: var(--surface); border: 1px solid var(--rule);
-  border-left: 3px solid var(--accent); padding: 1.15rem 1.25rem; margin: 0 0 1.5rem; }
-.caption { font-family: var(--serif); font-size: clamp(1.25rem, 3.6vw, 1.6rem);
-  line-height: 1.42; margin: 0; }
-.ask { font-size: .95rem; color: var(--ink-soft); margin: 0 0 1.5rem; }
+/* ---------- transitions between judgements ---------- */
+.slide { animation: slide-in .26s cubic-bezier(.22,.61,.36,1) both; }
+.slide.back { animation-name: slide-in-back; }
+@keyframes slide-in { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+@keyframes slide-in-back { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
 
-/* ---------- clips ---------- */
-.clip { border-top: 1px solid var(--rule); padding: 1.4rem 0 .5rem; }
-.clip:first-of-type { border-top: 0; padding-top: .25rem; }
-.clip-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin: 0 0 .7rem; }
-.clip-name { font-weight: 600; font-size: .95rem; }
-.heard { font-size: .8rem; color: var(--accent); }
-.stage { position: relative; width: 100%; aspect-ratio: 16/9; background: #0D1113; border: 1px solid var(--rule); }
-.stage > div, .stage iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.cover { position: absolute; inset: 0; display: grid; place-items: center; gap: .6rem;
-  background: #0D1113; color: #EAF0EE; z-index: 2; cursor: pointer; border: 0; font: inherit; width: 100%; }
-.cover span { font-size: .9rem; color: #9FB3AD; }
-.cover strong { font-weight: 500; font-size: 1rem; display: flex; align-items: center; gap: .55rem; }
-.cover:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
-.altlink { font-size: .85rem; margin: .5rem 0 0; color: var(--ink-soft); }
+/* ---------- the caption: what everything is judged against ---------- */
+.caption-wrap {
+  flex: 0 1 auto; min-height: 0; overflow-y: auto;
+  background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--accent);
+  padding: .8rem .95rem; margin-bottom: .7rem;
+}
+.caption {
+  font-family: var(--serif); margin: 0;
+  font-size: clamp(.98rem, 2.9vw, 1.25rem); line-height: 1.35;
+}
+
+/* ---------- the clip ---------- */
+.stage {
+  flex: 0 1 auto; position: relative; width: 100%;
+  aspect-ratio: 16/9; max-height: 38dvh; margin: 0 auto;
+  background: #0D1113; border: 1px solid var(--rule);
+}
+.stage iframe, .stage > div { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.clipbar {
+  flex: 0 0 auto; display: flex; justify-content: space-between; align-items: baseline;
+  gap: 1rem; padding: .5rem 0 .1rem; font-size: .84rem; color: var(--ink-soft);
+}
+.heard { color: var(--accent); }
+.altlink { font-size: .82rem; margin: 0; color: var(--ink-soft); }
 .altlink a { color: var(--accent); }
 
 /* ---------- rating ---------- */
-.scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: .4rem; margin: .9rem 0 .3rem; }
-.scale button { font: inherit; font-size: .95rem; font-weight: 500; min-height: 2.9rem; padding: .3rem;
-  background: var(--surface); color: var(--ink); border: 1px solid var(--rule); border-radius: 2px; cursor: pointer; }
+.scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: .45rem; margin: .55rem 0 .3rem; }
+.scale button {
+  font: inherit; font-size: 1.05rem; font-weight: 500;
+  min-height: clamp(2.9rem, 8dvh, 3.5rem); padding: .2rem;
+  background: var(--surface); color: var(--ink);
+  border: 1px solid var(--rule); border-radius: 3px; cursor: pointer;
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+}
+.scale button:active { transform: scale(.94); }
 .scale button:hover { border-color: var(--accent); }
 .scale button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .scale button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
-.legend { display: flex; justify-content: space-between; font-size: .78rem; color: var(--ink-faint); }
-.skip { margin: .55rem 0 0; font-size: .85rem; }
-.skip button { font: inherit; font-size: .85rem; background: none; border: 0; color: var(--ink-soft);
-  text-decoration: underline; cursor: pointer; padding: .2rem 0; }
-.skip button[aria-pressed="true"] { color: var(--flag); font-weight: 500; }
+.legend { display: flex; justify-content: space-between; font-size: .75rem; color: var(--ink-faint); }
 
-/* ---------- nav ---------- */
-.nav { position: fixed; left: 0; right: 0; bottom: 0; background: var(--surface); border-top: 1px solid var(--rule); }
-.nav-in { max-width: var(--wrap); margin: 0 auto; padding: .75rem 1.15rem;
-  padding-bottom: calc(.75rem + env(safe-area-inset-bottom)); display: flex; align-items: center; gap: .8rem; }
-.nav .spacer { flex: 1; }
-.hint { font-size: .82rem; color: var(--ink-faint); }
-button.primary, button.ghost { font: inherit; font-weight: 500; font-size: .95rem; cursor: pointer;
-  padding: .65rem 1.35rem; border-radius: 2px; min-height: 2.75rem; }
+/* ---------- foot controls ---------- */
+.controls { display: flex; align-items: center; gap: .7rem; margin-top: .55rem; }
+.controls .spacer { flex: 1; }
+button.primary, button.ghost, button.link {
+  font: inherit; font-weight: 500; font-size: .92rem; cursor: pointer;
+  border-radius: 3px; min-height: 2.7rem; padding: .55rem 1.2rem;
+}
 button.primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
 button.primary:hover:not(:disabled) { background: var(--accent-deep); }
 button.primary:disabled { background: var(--rule); border-color: var(--rule); color: var(--ink-faint); cursor: not-allowed; }
-button.ghost { background: transparent; color: var(--ink-soft); border: 1px solid transparent; }
+button.ghost { background: transparent; color: var(--ink-soft); border: 1px solid transparent; padding-left: .4rem; padding-right: .4rem; }
 button.ghost:hover { color: var(--ink); }
-button.primary:focus-visible, button.ghost:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+button.link { background: none; border: 0; color: var(--ink-soft); text-decoration: underline; padding: .4rem 0; min-height: 0; font-size: .84rem; }
+button.link[aria-pressed="true"] { color: var(--flag); font-weight: 500; }
+button.primary:focus-visible, button.ghost:focus-visible, button.link:focus-visible {
+  outline: 2px solid var(--ink); outline-offset: 2px; }
 
-/* ---------- welcome / done ---------- */
-label.field { display: block; margin: 0 0 1.5rem; max-width: 22rem; }
-label.field span { display: block; font-weight: 500; font-size: .9rem; margin: 0 0 .35rem; }
+/* ---------- welcome / done, which may scroll internally ---------- */
+.sheet { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding-bottom: .5rem; }
+h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 5.5vw, 2.2rem);
+  line-height: 1.18; margin: .2rem 0 .7rem; letter-spacing: -.01em; }
+p { margin: 0 0 .85rem; max-width: 34rem; }
+.lede { color: var(--ink-soft); }
+.quiet { color: var(--ink-soft); font-size: .88rem; }
+label.field { display: block; margin: .3rem 0 1.1rem; max-width: 22rem; }
+label.field span { display: block; font-weight: 500; font-size: .88rem; margin: 0 0 .3rem; }
 input[type=text] { font: inherit; width: 100%; padding: .6rem .7rem; min-height: 2.75rem;
-  background: var(--surface); border: 1px solid var(--rule); border-radius: 2px; color: var(--ink); }
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; color: var(--ink); }
 input[type=text]:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
-.facts { border-top: 1px solid var(--rule); margin: 1.75rem 0 0; padding: 1rem 0 0; }
-.facts div { display: flex; gap: 1rem; padding: .3rem 0; font-size: .9rem; }
-.facts dt { color: var(--ink-soft); flex: 0 0 8.5rem; }
+.facts { border-top: 1px solid var(--rule); margin: .9rem 0 0; padding: .7rem 0 0; }
+.facts div { display: flex; gap: 1rem; padding: .25rem 0; font-size: .86rem; }
+.facts dt { color: var(--ink-soft); flex: 0 0 8rem; }
 .facts dd { margin: 0; }
-.resume { background: var(--accent-tint); border: 1px solid var(--accent); padding: .85rem 1rem;
-  margin: 0 0 1.5rem; font-size: .92rem; }
-.status { font-size: .9rem; margin: 1rem 0 0; }
+.resume { background: var(--accent-tint); border: 1px solid var(--accent);
+  padding: .7rem .85rem; margin: 0 0 1rem; font-size: .9rem; }
+.status { font-size: .9rem; margin: .8rem 0 0; }
 .status.err { color: var(--flag); }
-.tick { font-family: var(--serif); font-size: 2.6rem; line-height: 1; color: var(--accent); margin: 0 0 .6rem; }
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+.tick { font-family: var(--serif); font-size: 2.4rem; line-height: 1; color: var(--accent); margin: 0 0 .4rem; }
+.loading { padding: 3rem 0; color: var(--ink-soft); }
+
+/* Landscape phones are short: give the clip the room and shrink the words. */
+@media (max-height: 520px) {
+  .caption { font-size: .9rem; }
+  .caption-wrap { padding: .55rem .7rem; margin-bottom: .5rem; }
+  .stage { max-height: 44dvh; }
+  .scale button { min-height: 2.6rem; font-size: .95rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
