@@ -153,8 +153,9 @@ function welcome() {
   const resume = state.seed && doneCount() > 0;
   bodyEl.innerHTML = `
     <div class="sheet slide">
-      ${resume ? `<p class="resume">You have ${doneCount()} of ${items.length} answers saved
-        on this device. Carrying on keeps them.</p>` : ""}
+      ${resume ? `<p class="resume"><strong>${esc(state.rater)}</strong> has
+        ${doneCount()} of ${items.length} answers saved on this device. Carrying on with
+        that name keeps them; entering a different name starts a fresh set.</p>` : ""}
       <h1>Does the music match the description?</h1>
       <p class="lede">You will read short descriptions of music and hear the clips a
         machine-learning model picked out for them. For each clip, say how well it fits
@@ -182,7 +183,16 @@ function welcome() {
   input.addEventListener("keydown", (e) => { if (e.key === "Enter") go.click(); });
   go.addEventListener("click", () => {
     if (!input.value.trim()) return input.focus();
-    state.rater = input.value.trim();
+    const typed = input.value.trim();
+    // Saved progress belongs to the person who made it. If a different name is
+    // entered -- two people sharing a phone, a shared lab machine -- start
+    // clean, or the second rater silently submits the first one's answers
+    // under their own name and the study gains a duplicate it cannot see.
+    if (state.seed && state.rater && typed.toLowerCase() !== state.rater.toLowerCase()) {
+      state.ratings = {}; state.skipped = {}; state.played = {};
+      state.seed = 0; state.startedAt = null; state.sent = false;
+    }
+    state.rater = typed;
     state.startedAt = state.startedAt || Date.now();
     if (!state.seed) {
       state.seed = Math.floor(Math.random() * 1e9);
