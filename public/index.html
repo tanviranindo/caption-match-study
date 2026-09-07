@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Does the music match the description?</title>
+<meta name="description" content="A short listening study: rate how well each music clip matches its written description.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231F6156'/%3E%3Crect x='7' y='13' width='2.6' height='6' fill='%23fff'/%3E%3Crect x='12' y='9' width='2.6' height='14' fill='%23fff'/%3E%3Crect x='17' y='11' width='2.6' height='10' fill='%23fff'/%3E%3Crect x='22' y='14' width='2.6' height='4' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in">
+    <span class="bar-name">Music description study</span>
+    <span class="bar-step" id="step"></span>
+  </div>
+  <div class="track"><i id="fill"></i></div>
+</header>
+
+<main id="view" tabindex="-1">
+  <p class="loading">Loading the study…</p>
+</main>
+
+<div class="nav"><div class="nav-in" id="nav"></div></div>
+
+<script src="./app.js" type="module"></script>
+</body>
+</html>

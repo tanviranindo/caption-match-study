@@ -1,0 +1,17 @@
+{
+  "name": "caption-match-study",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A web app for running caption-to-audio matching listening studies: raters hear a cued excerpt and rate how well it matches a written description.",
+  "license": "MIT",
+  "author": "tanviranindo <tanviranindo@gmail.com>",
+  "scripts": {
+    "build:study": "node scripts/build-study.mjs",
+    "dev": "vercel dev",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@vercel/blob": "^0.27.0"
+  }
+}

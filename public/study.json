@@ -1,0 +1,267 @@
+{
+  "id": "caption-match",
+  "title": "Music description study",
+  "total": 30,
+  "queries": [
+    {
+      "caption": "The low quality recording features a ballad song that contains sustained strings, mellow piano melody and soft female vocal singing over it. It sounds sad and soulful, like something you would hear at Sunday services.",
+      "clips": [
+        {
+          "rank": 1,
+          "clip_id": "581356124",
+          "ytid": "TdHdD1wxu_0",
+          "start_s": 30,
+          "end_s": 40
+        },
+        {
+          "rank": 2,
+          "clip_id": "159578490",
+          "ytid": "eW8se7t0s-U",
+          "start_s": 30,
+          "end_s": 40
+        },
+        {
+          "rank": 3,
+          "clip_id": "769395224",
+          "ytid": "-0Gj8-vB1q4",
+          "start_s": 30,
+          "end_s": 40
+        }
+      ]
+    },
+    {
+      "caption": "a male voice is singing a melody with changing tempos while snipping his fingers rhythmically. The recording sounds like it has been recorded in an empty room. This song may be playing, practicing snipping and singing al",
+      "clips": [
+        {
+          "rank": 1,
+          "clip_id": "30922054",
+          "ytid": "S7TYAcOEPt4",
+          "start_s": 30,
+          "end_s": 40
+        },
+        {
+          "rank": 2,
+          "clip_id": "3074654",
+          "ytid": "efTVnvwI2PQ",
+          "start_s": 240,
+          "end_s": 250
+        },
+        {
+          "rank": 3,
+          "clip_id": "746003018",
+          "ytid": "B90BOtSOD2Q",
+          "start_s": 410,
+          "end_s": 420
+        }
+      ]
+    },
+    {
+      "caption": "This song contains digital drums playing a simple groove along with two guitars. One strumming chords along with the snare the other one playing a melody on top. An e-bass is playing the footnote while a piano is playing",
+      "clips": [
+        {
+          "rank": 1,
+          "clip_id": "4484960",
+          "ytid": "1-Y9kafYuqQ",
+          "start_s": 100,
+          "end_s": 110
+        },
+        {
+          "rank": 2,
+          "clip_id": "941909166",
+          "ytid": "0PMFAO4TIU4",
+          "start_s": 30,
+          "end_s": 40
+        },
+        {
+          "rank": 3,
+          "clip_id": "342233672",
+          "ytid": "hzr2aY33EuI",
+          "start_s": 30,
+          "end_s": 40
+        }
+      ]
+    },
+    {
+      "caption": "This clip is three tracks playing consecutively. The first one is an electric guitar lead harmony with a groovy bass line, followed by white noise and then a female vocalisation to a vivacious melody with a keyboard harm",
+      "clips": [
+        {
+          "rank": 1,
+          "clip_id": "179025202",
+          "ytid": "04NjXsLyCl4",
+          "start_s": 30,
+          "end_s": 40
+        },
+        {
+          "rank": 2,
+          "clip_id": "805212731",
+          "ytid": "TCRxCAYyduo",
+          "start_s": 0,
+          "end_s": 10
+        },
+        {
+          "rank": 3,
+          "clip_id": "388668948",
+          "ytid": "t637ILYjH_A",
+          "start_s": 280,
+          "end_s": 290
+        }
+      ]
+    },
+    {
+      "caption": "A male singer sings this groovy melody. The song is a techno dance song with a groovy bass line, strong drumming rhythm and a keyboard accompaniment. The song is so groovy and serves as a dance track for the dancing chil",
+      "clips": [
+        {
+          "rank": 1,
+          "clip_id": "557881296",
+          "ytid": "PFX2OO75sRQ",
+          "start_s": 30,
+          "end_s": 40
+        },
+        {
+          "rank": 2,
+          "clip_id": "312323892",
+          "ytid": "OmjfHQB_lcs",
+          "start_s": 30,
+          "end_s": 40
+        },
+        {
+          "rank": 3,
+          "clip_id": "108310187",
+          "ytid": "X7qFgrAl3OU",
+          "start_s": 70,
+          "end_s": 80
+        }
+      ]
+    },
+    {
+      "caption": "someone is playing a high pitched melody on a steel drum. The file is of poor audio-quality.",
+      "clips": [
+        {
+          "rank": 1,
+          "clip_id": "352745527",
+          "ytid": "yi4-kGV30qs",
+          "start_s": 60,
+          "end_s": 70
+        },
+        {
+          "rank": 2,
+          "clip_id": "60006257",
+          "ytid": "OMcoFfaCaGM",
+          "start_s": 30,
+          "end_s": 40
+        },
+        {
+          "rank": 3,
+          "clip_id": "265219163",
+          "ytid": "JI26wmUPcrM",
+          "start_s": 0,
+          "end_s": 10
+        }
+      ]
+    },
+    {
+      "caption": "low fidelity audio from a live performance featuring a solo direct input acoustic guitar strumming airy, suspended open chords. Also present are occasional ambient sounds, perhaps papers being shuffled.",
+      "clips": [
+        {
+          "rank": 1,
+          "clip_id": "490983059",
+          "ytid": "-nlkWWphiaM",
+          "start_s": 30,
+          "end_s": 40
+        },
+        {
+          "rank": 2,
+          "clip_id": "368926067",
+          "ytid": "iqOPJWWKo90",
+          "start_s": 30,
+          "end_s": 40
+        },
+        {
+          "rank": 3,
+          "clip_id": "274735875",
+          "ytid": "AcX6rAwFTiY",
+          "start_s": 260,
+          "end_s": 270
+        }
+      ]
+    },
+    {
+      "caption": "The instrumental music features an ensemble that resembles the orchestra. The melody is being played by a brass section while strings provide harmonic accompaniment. At the end of the music excerpt one can hear a double ",
+      "clips": [
+        {
+          "rank": 1,
+          "clip_id": "822026723",
+          "ytid": "bYwoYjbPm-I",
+          "start_s": 30,
+          "end_s": 40
+        },
+        {
+          "rank": 2,
+          "clip_id": "256567502",
+          "ytid": "3VTinB14Pmw",
+          "start_s": 30,
+          "end_s": 40
+        },
+        {
+          "rank": 3,
+          "clip_id": "270122017",
+          "ytid": "6_zzu2KON6c",
+          "start_s": 80,
+          "end_s": 90
+        }
+      ]
+    },
+    {
+      "caption": "This middle eastern folk song features a male voice. This is accompanied by a string instrument called the oud playing the melody in between lines. A variety of middle-eastern percussion instruments are played in the bac",
+      "clips": [
+        {
+          "rank": 1,
+          "clip_id": "778257713",
+          "ytid": "e_W17jp40G4",
+          "start_s": 30,
+          "end_s": 40
+        },
+        {
+          "rank": 2,
+          "clip_id": "591705724",
+          "ytid": "P1Vxm_ICSG0",
+          "start_s": 30,
+          "end_s": 40
+        },
+        {
+          "rank": 3,
+          "clip_id": "172278676",
+          "ytid": "1pR0SgbqP3M",
+          "start_s": 30,
+          "end_s": 40
+        }
+      ]
+    },
+    {
+      "caption": "A male voice narrates a monologue to the rhythm of a song in the background. The song is fast tempo with enthusiastic drumming, groovy bass lines,cymbal ride, keyboard accompaniment ,electric guitar and animated vocals. ",
+      "clips": [
+        {
+          "rank": 1,
+          "clip_id": "181626426",
+          "ytid": "dTVkk4GSmNA",
+          "start_s": 140,
+          "end_s": 150
+        },
+        {
+          "rank": 2,
+          "clip_id": "370849959",
+          "ytid": "ztfegVzqeCI",
+          "start_s": 30,
+          "end_s": 40
+        },
+        {
+          "rank": 3,
+          "clip_id": "521451282",
+          "ytid": "uy3nQ9VYE-Q",
+          "start_s": 30,
+          "end_s": 40
+        }
+      ]
+    }
+  ]
+}

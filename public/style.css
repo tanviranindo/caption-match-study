@@ -1,0 +1,113 @@
+/* A listening study is read in one sitting on a phone, usually at night, so the
+   page commits to a single quiet light theme rather than following the system.
+   One saturated colour exists and it means "you chose this". */
+:root {
+  color-scheme: light;
+  --ground: #E9EDEC;
+  --surface: #FFFFFF;
+  --ink: #14181B;
+  --ink-soft: #5A656C;
+  --ink-faint: #8A9399;
+  --rule: #D3DAD8;
+  --accent: #1F6156;
+  --accent-deep: #164A42;
+  --accent-tint: #DCEAE5;
+  --flag: #A8471F;
+  --serif: Newsreader, Georgia, "Times New Roman", serif;
+  --sans: "Inter Tight", system-ui, -apple-system, sans-serif;
+  --wrap: 42rem;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--ground); color: var(--ink);
+  font-family: var(--sans); font-size: 16px; line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+main:focus { outline: none; }
+.loading { max-width: var(--wrap); margin: 0 auto; padding: 3rem 1.15rem; color: var(--ink-soft); }
+
+/* ---------- chrome ---------- */
+.bar { position: sticky; top: 0; z-index: 20; background: var(--ground); border-bottom: 1px solid var(--rule); }
+.bar-in { max-width: var(--wrap); margin: 0 auto; padding: .7rem 1.15rem .55rem;
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.bar-name { font-weight: 600; font-size: .95rem; letter-spacing: -.01em; }
+.bar-step { font-size: .85rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.track { height: 2px; background: var(--rule); }
+.track > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .3s ease; }
+main { max-width: var(--wrap); margin: 0 auto; padding: 1.5rem 1.15rem 7rem; }
+
+/* ---------- type ---------- */
+h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.7rem, 5vw, 2.3rem);
+  line-height: 1.2; margin: .4rem 0 .8rem; letter-spacing: -.01em; }
+p { margin: 0 0 1rem; max-width: 34rem; }
+.lede { color: var(--ink-soft); }
+.quiet { color: var(--ink-soft); font-size: .9rem; }
+
+/* The caption is the hero: it is the thing every judgement is made against. */
+.caption-wrap { background: var(--surface); border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent); padding: 1.15rem 1.25rem; margin: 0 0 1.5rem; }
+.caption { font-family: var(--serif); font-size: clamp(1.25rem, 3.6vw, 1.6rem);
+  line-height: 1.42; margin: 0; }
+.ask { font-size: .95rem; color: var(--ink-soft); margin: 0 0 1.5rem; }
+
+/* ---------- clips ---------- */
+.clip { border-top: 1px solid var(--rule); padding: 1.4rem 0 .5rem; }
+.clip:first-of-type { border-top: 0; padding-top: .25rem; }
+.clip-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin: 0 0 .7rem; }
+.clip-name { font-weight: 600; font-size: .95rem; }
+.heard { font-size: .8rem; color: var(--accent); }
+.stage { position: relative; width: 100%; aspect-ratio: 16/9; background: #0D1113; border: 1px solid var(--rule); }
+.stage > div, .stage iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.cover { position: absolute; inset: 0; display: grid; place-items: center; gap: .6rem;
+  background: #0D1113; color: #EAF0EE; z-index: 2; cursor: pointer; border: 0; font: inherit; width: 100%; }
+.cover span { font-size: .9rem; color: #9FB3AD; }
+.cover strong { font-weight: 500; font-size: 1rem; display: flex; align-items: center; gap: .55rem; }
+.cover:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
+.altlink { font-size: .85rem; margin: .5rem 0 0; color: var(--ink-soft); }
+.altlink a { color: var(--accent); }
+
+/* ---------- rating ---------- */
+.scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: .4rem; margin: .9rem 0 .3rem; }
+.scale button { font: inherit; font-size: .95rem; font-weight: 500; min-height: 2.9rem; padding: .3rem;
+  background: var(--surface); color: var(--ink); border: 1px solid var(--rule); border-radius: 2px; cursor: pointer; }
+.scale button:hover { border-color: var(--accent); }
+.scale button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.scale button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.legend { display: flex; justify-content: space-between; font-size: .78rem; color: var(--ink-faint); }
+.skip { margin: .55rem 0 0; font-size: .85rem; }
+.skip button { font: inherit; font-size: .85rem; background: none; border: 0; color: var(--ink-soft);
+  text-decoration: underline; cursor: pointer; padding: .2rem 0; }
+.skip button[aria-pressed="true"] { color: var(--flag); font-weight: 500; }
+
+/* ---------- nav ---------- */
+.nav { position: fixed; left: 0; right: 0; bottom: 0; background: var(--surface); border-top: 1px solid var(--rule); }
+.nav-in { max-width: var(--wrap); margin: 0 auto; padding: .75rem 1.15rem;
+  padding-bottom: calc(.75rem + env(safe-area-inset-bottom)); display: flex; align-items: center; gap: .8rem; }
+.nav .spacer { flex: 1; }
+.hint { font-size: .82rem; color: var(--ink-faint); }
+button.primary, button.ghost { font: inherit; font-weight: 500; font-size: .95rem; cursor: pointer;
+  padding: .65rem 1.35rem; border-radius: 2px; min-height: 2.75rem; }
+button.primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+button.primary:hover:not(:disabled) { background: var(--accent-deep); }
+button.primary:disabled { background: var(--rule); border-color: var(--rule); color: var(--ink-faint); cursor: not-allowed; }
+button.ghost { background: transparent; color: var(--ink-soft); border: 1px solid transparent; }
+button.ghost:hover { color: var(--ink); }
+button.primary:focus-visible, button.ghost:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* ---------- welcome / done ---------- */
+label.field { display: block; margin: 0 0 1.5rem; max-width: 22rem; }
+label.field span { display: block; font-weight: 500; font-size: .9rem; margin: 0 0 .35rem; }
+input[type=text] { font: inherit; width: 100%; padding: .6rem .7rem; min-height: 2.75rem;
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 2px; color: var(--ink); }
+input[type=text]:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.facts { border-top: 1px solid var(--rule); margin: 1.75rem 0 0; padding: 1rem 0 0; }
+.facts div { display: flex; gap: 1rem; padding: .3rem 0; font-size: .9rem; }
+.facts dt { color: var(--ink-soft); flex: 0 0 8.5rem; }
+.facts dd { margin: 0; }
+.resume { background: var(--accent-tint); border: 1px solid var(--accent); padding: .85rem 1rem;
+  margin: 0 0 1.5rem; font-size: .92rem; }
+.status { font-size: .9rem; margin: 1rem 0 0; }
+.status.err { color: var(--flag); }
+.tick { font-family: var(--serif); font-size: 2.6rem; line-height: 1; color: var(--accent); margin: 0 0 .6rem; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
